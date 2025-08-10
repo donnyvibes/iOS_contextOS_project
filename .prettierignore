@@ -1,0 +1,83 @@
+# Similar to .eslintignore, but for Prettier
+
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Cache directories
+.npm
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.pnp.*
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# Temporary folders
+tmp/
+temp/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# React Native
+android/
+ios/
+
+# Expo
+.expo/
+.expo-shared/
+
+# Generated files
+*.tsbuildinfo
+.tscache/
+
+# Lock files (should be committed but not formatted)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+bun.lockb
+
+# Changelog files
+CHANGELOG.md
+CHANGELOG
+changelog.md
+changelog
+
+# Storybook build outputs
+storybook-static
