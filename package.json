@@ -3,18 +3,48 @@
   "version": "1.0.0",
   "private": true,
   "description": "A cross-platform project for iOS context-aware operating system",
+  "workspaces": [
+    "apps/mobile",
+    "apps/web",
+    "packages/*"
+  ],
   "scripts": {
-    "dev": "# TODO: Add development server script",
-    "build": "# TODO: Add build script",
-    "test": "# TODO: Add test script",
-    "lint": "# TODO: Add linting script",
-    "clean": "# TODO: Add clean script"
+    "dev:mobile": "pnpm --filter @contextos/mobile dev",
+    "dev:web": "pnpm --filter @contextos/web dev",
+    "dev:all": "pnpm --parallel --filter '{apps/*}' dev",
+    "build": "pnpm --parallel --filter '{apps/*,packages/*}' build",
+    "test": "pnpm --parallel --filter '{apps/*,packages/*}' test",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "lint:check": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "pnpm --parallel --filter '{apps/*,packages/*}' typecheck",
+    "clean": "pnpm --parallel --filter '{apps/*,packages/*}' clean && rm -rf node_modules",
+    "prepare": "lefthook install"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.50.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-react": "^7.33.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "lefthook": "^1.5.0",
+    "lint-staged": "^15.0.0",
+    "prettier": "^3.0.0",
     "typescript": "^5.0.0"
   },
   "engines": {
     "node": ">=18.0.0",
     "pnpm": ">=8.0.0"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yml,yaml}": [
+      "prettier --write"
+    ]
   }
 }
