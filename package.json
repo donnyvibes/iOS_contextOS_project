@@ -1,0 +1,20 @@
+{
+  "name": "ios-contextos-project",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A cross-platform project for iOS context-aware operating system",
+  "scripts": {
+    "dev": "# TODO: Add development server script",
+    "build": "# TODO: Add build script",
+    "test": "# TODO: Add test script",
+    "lint": "# TODO: Add linting script",
+    "clean": "# TODO: Add clean script"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  }
+}
