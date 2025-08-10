@@ -1,0 +1,50 @@
+# Lefthook configuration for git hooks
+# https://github.com/evilmartians/lefthook
+
+pre-commit:
+  parallel: true
+  commands:
+    lint-staged:
+      run: npx lint-staged
+      fail_text: "Linting and formatting failed. Please fix the issues and try again."
+      stage_fixed: true
+    
+    typecheck:
+      run: pnpm typecheck
+      fail_text: "TypeScript type checking failed. Please fix the type errors and try again."
+      skip:
+        - merge
+        - rebase
+
+pre-push:
+  parallel: true
+  commands:
+    lint:
+      run: pnpm lint:check
+      fail_text: "ESLint check failed. Run 'pnpm lint' to fix issues."
+    
+    format:
+      run: pnpm format:check
+      fail_text: "Code formatting check failed. Run 'pnpm format' to fix formatting."
+    
+    test:
+      run: pnpm test
+      fail_text: "Tests failed. Please fix failing tests before pushing."
+      skip:
+        - merge
+        - rebase
+
+commit-msg:
+  commands:
+    conventional-commit:
+      run: |
+        # Simple check for conventional commit format
+        if ! grep -qE '^(feat|fix|docs|style|refactor|test|chore|perf|ci|build)(\(.+\))?!?: .+' "$1"; then
+          echo "Commit message should follow conventional commit format:"
+          echo "  type(scope): description"
+          echo ""
+          echo "Types: feat, fix, docs, style, refactor, test, chore, perf, ci, build"
+          echo "Example: feat(auth): add login functionality"
+          exit 1
+        fi
+      fail_text: "Commit message doesn't follow conventional commit format."
